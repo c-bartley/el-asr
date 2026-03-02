@@ -21,34 +21,20 @@ All five languages are classified as **endangered or critically endangered** by 
 
 Each language is divided into four subsets. **train-ut** (utterance-train) is derived from long-form recordings via forced alignment and automatic segmentation; **train-sh** (short-train) comes from pre-existing short utterance resources; **test-id** is a held-out in-domain evaluation set; **test-ood** is an out-of-domain evaluation set drawn from independent sources. 
 
-| Language | Subset | Utterances | Duration (h) |
-|---|---|---:|---:|
-| **Cornish** | train-ut | 16,550 | 38.73 |
-| | train-sh | 433 | 0.14 |
-| | test-id | 131 | 0.28 |
-| | test-ood | 37 | 0.09 |
-| | **Total** | **17,151** | **39.24** |
-| **Hawaiian** | train-ut | 8,815 | 13.86 |
-| | train-sh | 702 | 0.26 |
-| | test-id | 516 | 0.78 |
-| | test-ood | 64 | 0.13 |
-| | **Total** | **10,097** | **15.03** |
-| **Jejeuo** | train-ut | 2,164 | 3.31 |
-| | train-sh | 266 | 0.11 |
-| | test-id | 126 | 0.19 |
-| | test-ood | 38 | 0.02 |
-| | **Total** | **2,594** | **3.63** |
-| **Manx** | train-ut | 8,882 | 11.96 |
-| | train-sh | 3,215 | 1.70 |
-| | test-id | 1,139 | 1.01 |
-| | test-ood | 134 | 0.15 |
-| | **Total** | **13,370** | **14.82** |
-| **Mohawk** | train-ut | 1,512 | 2.08 |
-| | train-sh | 1,956 | 2.67 |
-| | test-id | 92 | 0.11 |
-| | test-ood | 130 | 0.25 |
-| | **Total** | **3,690** | **5.11** |
-| **All languages** | | **46,902** | **77.83** |
+| Language | | train-ut | train-sh | test-id | test-ood | Total |
+|---|---|---:|---:|---:|---:|---:|
+| **Cornish** | Utterances | 16,550 | 433 | 131 | 37 | 17,151 |
+| | Duration (h) | 38.73 | 0.14 | 0.28 | 0.09 | 39.24 |
+| **Hawaiian** | Utterances | 8,815 | 702 | 516 | 64 | 10,097 |
+| | Duration (h) | 13.86 | 0.26 | 0.78 | 0.13 | 15.03 |
+| **Jejeuo** | Utterances | 2,164 | 266 | 126 | 38 | 2,594 |
+| | Duration (h) | 3.31 | 0.11 | 0.19 | 0.02 | 3.63 |
+| **Manx** | Utterances | 8,882 | 3,215 | 1,139 | 134 | 13,370 |
+| | Duration (h) | 11.96 | 1.70 | 1.01 | 0.15 | 14.82 |
+| **Mohawk** | Utterances | 1,512 | 1,956 | 92 | 130 | 3,690 |
+| | Duration (h) | 2.08 | 2.67 | 0.11 | 0.25 | 5.11 |
+| **Total** | **Utterances** | **37,923** | **6,572** | **2,004** | **403** | **46,902** |
+| | **Duration (h)** | **69.94** | **4.88** | **2.37** | **0.64** | **77.83** |
 
 Each language directory also contains a `train-long/` subdirectory holding the original long-form recordings used as the alignment source. These are not included in the statistics above.
 
@@ -101,7 +87,9 @@ Each language follows a consistent layout:
 
 Each dataset was constructed using the same forced-alignment bootstrapping pipeline implemented in Kaldi:
 
-![Alignment pipeline diagram](alignment_pipeline.png)
+<p align="center">
+  <img src="alignment_pipeline.png" alt="Alignment pipeline diagram" />
+</p>
 
 The short-form data (train-sh) provides the seed acoustic model. The document-level language model encodes the known reference transcript to guide decoding back toward the ground truth, producing near-oracle word error rates (typically < 5% at the document level). The resulting word-level CTM alignments are then used to extract precise segment boundaries.
 
