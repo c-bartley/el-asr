@@ -1,19 +1,2 @@
-# Audio files — too large for git (full dataset available via data repository)
+downloads/
 **/*.wav
-**/*.mp3
-**/*.flac
-**/*.ogg
-
-# Raw long-form source recordings (tracked separately in train-long/metadata.csv)
-*/train-long/
-
-# Intermediate segmentation working directory
-*/train/
-
-# Speaker metadata and vocabulary lists
-**/SPEAKERS.TXT
-**/*.lst
-**/wordlist*
-
-# Backup files
-**/*.bak

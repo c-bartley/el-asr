@@ -9,11 +9,11 @@ This repository contains speech transcription datasets for five endangered langu
 |---|---|---|---|---|
 | Cornish (Kernewek) | Latin | Brythonic Celtic (Indo-European) | Cornwall, UK | ~600 |
 | Hawaiian (ʻŌlelo Hawaiʻi) | Latin | Polynesian (Austronesian) | Hawaiʻi, USA | ~2,000 native; ~24,000 L2 |
-| Jejeuo (제주어 Jejueo) | Hangul | Koreanic | Jeju Island, South Korea | ~5,000–10,000 (mostly elderly) |
+| Jejueo (제주어) | Hangul | Koreanic | Jeju Island, South Korea | ~5,000–10,000 (mostly elderly) |
 | Manx (Gaelg) | Latin | Goidelic Celtic (Indo-European) | Isle of Man | ~2,200 |
 | Mohawk (Kanienʼkéha) | Latin | Northern Iroquoian | Ontario, Canada and upstate New York, USA | ~3,500 |
 
-All five languages are classified as **endangered or critically endangered** by UNESCO. Cornish became extinct in the late 18th century before being revived in the early 20th century; Manx lost its last native community speaker in 1974 before revitalisation efforts produced a new generation of L2 speakers. Hawaiian, Jejeuo, and Mohawk each retain small but active speaker communities.
+All five languages are classified as **endangered or critically endangered** by UNESCO. Cornish became extinct in the late 18th century before being revived in the early 20th century; Manx lost its last native community speaker in 1974 before revitalisation efforts produced a new generation of L2 speakers. Hawaiian, Jejueo, and Mohawk each retain small but active speaker communities.
 
 ---
 
@@ -27,7 +27,7 @@ Each language is divided into four subsets. **train-ut** (utterance-train) is de
 | | Duration (h) | 38.73 | 0.14 | 0.28 | 0.09 | 39.24 |
 | **Hawaiian** | Utterances | 8,815 | 702 | 516 | 64 | 10,097 |
 | | Duration (h) | 13.86 | 0.26 | 0.78 | 0.13 | 15.03 |
-| **Jejeuo** | Utterances | 2,164 | 266 | 126 | 38 | 2,594 |
+| **Jejueo** | Utterances | 2,164 | 266 | 126 | 38 | 2,594 |
 | | Duration (h) | 3.31 | 0.11 | 0.19 | 0.02 | 3.63 |
 | **Manx** | Utterances | 8,882 | 3,215 | 1,139 | 134 | 13,370 |
 | | Duration (h) | 11.96 | 1.70 | 1.01 | 0.15 | 14.82 |
@@ -47,18 +47,11 @@ Per-language metadata is stored in `{Language}/metadata.csv` with columns:
 
 ### Transcripts and metadata only (GitHub)
 
-The transcripts, metadata, and processing scripts are available from our GitHub repository. Audio files are not included due to size constraints.
+The transcripts, metadata, and processing scripts are available from our GitHub repository. Audio files are not included. Use `download_audio.py` to fetch source recordings into a local `downloads/` directory, then `segment_audio.py` to extract and file the utterance-level WAVs.
 
 ```bash
 git clone https://github.com/[placeholder]/endangered-language-asr
 ```
-
-### Full dataset with audio
-
-The complete datasets including audio are available from the University of Sheffield Research Data Repository:
-
-> **[Dataset download — University of Sheffield Research Data Repository]**
-> [https://doi.org/PLACEHOLDER](https://doi.org/PLACEHOLDER)
 
 ### Directory structure
 
@@ -68,11 +61,11 @@ Each language follows a consistent layout:
 {Language}/
 ├── metadata.csv              # utterance-level index for all subsets
 ├── train-sh/                 # short-form training utterances
-│   └── {rec_id}/{rec_id}/
+│   └── {rec_id}/
 │       ├── {rec_id}.wav
 │       └── {rec_id}.trans.txt
 ├── train-ut/                 # long-form-derived training utterances
-│   └── {rec_id}/{rec_id}/
+│   └── {rec_id}/
 │       ├── lbi-{rec_id}-NNN.wav
 │       └── {rec_id}.trans.txt
 ├── train-long/               # source long-form recordings (raw)
@@ -93,7 +86,7 @@ Each dataset was constructed using the same forced-alignment bootstrapping pipel
 
 The short-form data (train-sh) provides the seed acoustic model. The document-level language model encodes the known reference transcript to guide decoding back toward the ground truth, producing near-oracle word error rates (typically < 5% at the document level). The resulting word-level CTM alignments are then used to extract precise segment boundaries.
 
-Text normalisation is performed per-language using `local/normalise_text.py`, with language-specific handling of diacritics, apostrophes (phonemic in Hawaiian and Mohawk), colons (vowel length in Mohawk), and script-specific features (Hangul for Jejeuo).
+Text normalisation is performed per-language using `local/normalise_text.py`, with language-specific handling of diacritics, apostrophes (phonemic in Hawaiian and Mohawk), colons (vowel length in Mohawk), and script-specific features (Hangul for Jejueo).
 
 ---
 
@@ -101,5 +94,4 @@ Text normalisation is performed per-language using `local/normalise_text.py`, wi
 
 If you use these datasets in your research, please cite:
 
-> [Authors]. *[Title]*. Interspeech [Year].
-> [https://doi.org/PLACEHOLDER](https://doi.org/PLACEHOLDER)
+> Christopher Bartley and Anton Ragni. *Bootstrapping Endangered Language ASR with Short-Form Corpora*. Interspeech 2026.
