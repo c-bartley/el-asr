@@ -1,5 +1,7 @@
 # Endangered Language ASR
 
+DOI: https://doi.org/10.5281/zenodo.20608831
+
 This repository contains speech transcription datasets assembled to support the development of automatic speech recognition (ASR) systems for five endangered languages.
 ---
 
