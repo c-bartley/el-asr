@@ -1,6 +1,6 @@
-# Endangered Language Datasets
+# Endangered Language ASR
 
-This repository contains speech transcription datasets for five endangered languages, assembled to support the development of automatic speech recognition (ASR) systems using a Kaldi forced-alignment bootstrapping pipeline.
+This repository contains speech transcription datasets assembled to support the development of automatic speech recognition (ASR) systems for five endangered languages.
 ---
 
 ## Languages
@@ -84,9 +84,7 @@ Each dataset was constructed using the same forced-alignment bootstrapping pipel
   <img src="alignment_pipeline.png" alt="Alignment pipeline diagram" />
 </p>
 
-The short-form data (train-sh) provides the seed acoustic model. The document-level language model encodes the known reference transcript to guide decoding back toward the ground truth, producing near-oracle word error rates (typically < 5% at the document level). The resulting word-level CTM alignments are then used to extract precise segment boundaries.
-
-Text normalisation is performed per-language using `local/normalise_text.py`, with language-specific handling of diacritics, apostrophes (phonemic in Hawaiian and Mohawk), colons (vowel length in Mohawk), and script-specific features (Hangul for Jejueo).
+The short-form data (train-sh) provides the seed acoustic model. The document-level language model encodes the known reference transcript to guide decoding towards the ground truth. The resulting word-level CTM alignments are then used to extract precise segment boundaries.
 
 ---
 
